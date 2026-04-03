@@ -4,55 +4,55 @@ This project exposes an MCP stdio server from:
 
 `node src/mcp-server.mjs`
 
+Use an absolute path to the checked-out repository when registering the server.
+
 ## Codex CLI
 
-Verified locally from `codex mcp add --help`, Codex supports adding a stdio MCP server with:
+Add the server:
 
 ```powershell
-codex mcp add rexd -- node D:\projects\REXD\src\mcp-server.mjs
+codex mcp add rexd -- node <ABSOLUTE_PATH_TO_REPO>\src\mcp-server.mjs
 ```
 
-Example command file:
-
-- [codex-add.txt](/D:/projects/REXD/examples/codex-add.txt)
-
-You can verify the server after adding it:
+Verify it:
 
 ```powershell
 codex mcp list
 codex mcp get rexd
 ```
 
-## Claude Code
+Example file:
 
-Verified locally from `claude mcp --help` and `claude mcp add-json --help`, Claude Code supports both direct command registration and JSON config.
+- [examples/codex-add.txt](../examples/codex-add.txt)
+
+## Claude Code
 
 Direct add:
 
 ```powershell
-claude mcp add rexd -- node D:\projects\REXD\src\mcp-server.mjs
+claude mcp add rexd -- node <ABSOLUTE_PATH_TO_REPO>\src\mcp-server.mjs
 ```
 
 JSON add:
 
 ```powershell
-claude mcp add-json rexd "{\"type\":\"stdio\",\"command\":\"node\",\"args\":[\"D:\\\\projects\\\\REXD\\\\src\\\\mcp-server.mjs\"],\"env\":{}}"
+claude mcp add-json rexd "{\"type\":\"stdio\",\"command\":\"node\",\"args\":[\"<ABSOLUTE_PATH_TO_REPO>\\\\src\\\\mcp-server.mjs\"],\"env\":{}}"
 ```
 
 Example files:
 
-- [claude-code-add-json.txt](/D:/projects/REXD/examples/claude-code-add-json.txt)
-- [claude-code-mcp.json](/D:/projects/REXD/examples/claude-code-mcp.json)
+- [examples/claude-code-add-json.txt](../examples/claude-code-add-json.txt)
+- [examples/claude-code-mcp.json](../examples/claude-code-mcp.json)
 
 ## Notes
 
-- Replace `D:\projects\REXD` if you move the repository.
-- For publishable docs, prefer absolute paths in one-shot examples and explain that users should change them for their own install location.
+- Replace `<ABSOLUTE_PATH_TO_REPO>` with your local checkout path.
 - If `node` is not in `PATH`, replace it with the full path to your Node executable.
+- Use an interactive agent session when your client requires approval for MCP tool calls.
 
 ## Example prompt
 
-After registering the server and launching the native demo target, a good test prompt is:
+After registering the server and launching the native demo target:
 
 ```text
 Use the `rexd` MCP server.

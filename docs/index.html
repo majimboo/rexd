@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>REXD</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: #111a2b;
+        --text: #e8eefc;
+        --muted: #a6b3cf;
+        --accent: #67d3ff;
+        --accent-2: #8cffb0;
+        --border: #22324f;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(103, 211, 255, 0.16), transparent 28rem),
+          radial-gradient(circle at top right, rgba(140, 255, 176, 0.12), transparent 24rem),
+          var(--bg);
+        color: var(--text);
+      }
+
+      main {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 64px 24px 96px;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2.5rem, 7vw, 4.8rem);
+        line-height: 0.95;
+      }
+
+      .lead {
+        max-width: 48rem;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-top: 40px;
+      }
+
+      .card {
+        background: rgba(17, 26, 43, 0.82);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 22px;
+        backdrop-filter: blur(8px);
+      }
+
+      h2 {
+        margin-top: 56px;
+        font-size: 1.4rem;
+      }
+
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.05rem;
+      }
+
+      p, li {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      code, pre {
+        font-family: Consolas, "Cascadia Code", monospace;
+      }
+
+      pre {
+        background: #08101c;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        overflow: auto;
+        color: var(--text);
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 12px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        background: rgba(103, 211, 255, 0.08);
+        color: var(--text);
+      }
+
+      .button.secondary {
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">REXD</div>
+      <h1>Agent-driven reverse engineering over Frida</h1>
+      <p class="lead">
+        REXD is a local MCP server and raw bridge for process inspection, memory editing, symbol lookup,
+        range scanning, and runtime hooks. It is built to let agent clients drive a target process
+        through a small, typed tool surface instead of arbitrary scripting.
+      </p>
+      <div class="actions">
+        <a class="button" href="../README.md">Read the README</a>
+        <a class="button secondary" href="./MCP_SETUP.md">MCP setup</a>
+      </div>
+
+      <div class="grid">
+        <section class="card">
+          <h3>Tool surface</h3>
+          <p>Attach, spawn suspended, enumerate modules and ranges, read and write memory, scan patterns, resolve symbols, and install hooks.</p>
+        </section>
+        <section class="card">
+          <h3>MCP-first</h3>
+          <p>Works as a local stdio MCP server for Codex, Claude Code, and other compatible clients.</p>
+        </section>
+        <section class="card">
+          <h3>Visible demo target</h3>
+          <p>Includes a native Windows UI program that displays a live integer so memory edits can be verified immediately.</p>
+        </section>
+      </div>
+
+      <h2>Quick start</h2>
+      <pre><code>npm install
+codex mcp add rexd -- node &lt;ABSOLUTE_PATH_TO_REPO&gt;\src\mcp-server.mjs</code></pre>
+
+      <h2>Example prompt</h2>
+      <pre><code>Use the `rexd` MCP server.
+
+Attach to the running `number_target.exe` process.
+Find the displayed number in memory and change it to `100`.
+Prefer using the PID or memory address shown in the window title if available.
+Report the exact MCP tool calls you used and the final value you confirmed.</code></pre>
+
+      <h2>Repository</h2>
+      <ul>
+        <li><a href="../targets/number_target/">Native demo target</a></li>
+        <li><a href="../examples/">Examples</a></li>
+        <li><a href="./MCP_SETUP.md">MCP setup guide</a></li>
+      </ul>
+    </main>
+  </body>
+  </html>
