@@ -17,8 +17,6 @@
   "scripts": {
     "start": "node src/index.mjs",
     "start:mcp": "node src/mcp-server.mjs",
-    "example:e2e": "node examples/e2e-hook-createfilew.mjs",
-    "example:notepad-edit": "node examples/e2e-notepad-memory-edit.mjs",
     "check": "node --check src/index.mjs && node --check src/mcp-server.mjs && node --check src/bridge-core.mjs && node --check src/agent-source.mjs"
   },
   "dependencies": {

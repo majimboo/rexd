@@ -13,7 +13,7 @@ The project exposes a small, typed tool surface for attaching to processes, read
 - a raw JSON bridge over `stdin` / `stdout`
 - an MCP stdio server for Codex, Claude Code, and other MCP clients
 - a native Windows demo target for visible memory-edit testing
-- example scripts for hook and memory workflows
+- example MCP registration snippets for supported clients
 
 ## Current tool surface
 
@@ -108,21 +108,12 @@ Prefer using the PID or memory address shown in the window title if available.
 Report the exact MCP tool calls you used and the final value you confirmed.
 ```
 
-## Example workflows
+## Examples
 
-Hook demo:
+The [examples](examples) directory contains registration snippets for:
 
-```powershell
-npm run example:e2e
-```
-
-This launches a local sample process, attaches to it, hooks `KERNELBASE!CreateFileW`, triggers a file read, and drains captured hook events.
-
-Example files:
-
-- [examples/e2e-hook-createfilew.mjs](examples/e2e-hook-createfilew.mjs)
-- [examples/e2e-notepad-memory-edit.mjs](examples/e2e-notepad-memory-edit.mjs)
-- [examples/target-read-file.mjs](examples/target-read-file.mjs)
+- Codex CLI
+- Claude Code
 
 ## Notes
 

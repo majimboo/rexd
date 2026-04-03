@@ -110,6 +110,12 @@ registerActionTool(server, 'writeMemory', 'Write raw memory using an even-length
   address: z.union([z.string(), z.number()]).describe('Target address'),
   hex: z.string().describe('Even-length hex string without spaces')
 });
+registerActionTool(server, 'protectMemory', 'Change memory page protection for a region.', {
+  sessionId: z.union([z.string(), z.number()]).describe('Bridge session ID'),
+  address: z.union([z.string(), z.number()]).describe('Target address'),
+  size: z.number().int().positive().describe('Number of bytes to change protection for'),
+  protection: z.string().describe('Frida protection string such as rwx, rw-, or r-x')
+});
 registerActionTool(server, 'readUtf8', 'Read a UTF-8 string from process memory.', {
   sessionId: z.union([z.string(), z.number()]).describe('Bridge session ID'),
   address: z.union([z.string(), z.number()]).describe('Target address'),

@@ -226,6 +226,29 @@ rpc.exports = {
     };
   },
 
+  protectmemory(address, size, protection) {
+    if (!Number.isInteger(size) || size <= 0) {
+      throw new Error('size must be a positive integer');
+    }
+
+    if (typeof protection !== 'string' || protection.length === 0) {
+      throw new Error('protection must be a non-empty string');
+    }
+
+    const target = normalizeAddress(address);
+    const range = Process.findRangeByAddress(target);
+    const previousProtection = range ? range.protection : null;
+    const changed = Memory.protect(target, size, protection);
+
+    return {
+      address: target.toString(),
+      size: size,
+      protection: protection,
+      previousProtection,
+      changed
+    };
+  },
+
   writememory(address, hex) {
     const target = normalizeAddress(address);
     const bytes = fromHex(hex);

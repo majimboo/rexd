@@ -194,6 +194,11 @@ export function createDispatcher(registry) {
         return entry.script.exports.writememory(params.address, params.hex);
       }
 
+      case 'protectMemory': {
+        const entry = registry.get(String(params.sessionId));
+        return entry.script.exports.protectmemory(params.address, params.size, params.protection);
+      }
+
       case 'readUtf8': {
         const entry = registry.get(String(params.sessionId));
         return entry.script.exports.readutf8(params.address, params.length);
